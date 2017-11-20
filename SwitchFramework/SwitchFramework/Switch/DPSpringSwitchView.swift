@@ -36,11 +36,13 @@ class DPSpringSwitchView: UIView {
     }
     
     fileprivate func instanceFromNib() {
-        Bundle.main.loadNibNamed("DPSpringSwitchView", owner: self, options: nil)
+        let bundle = Bundle(for: self.classForCoder)
+        bundle.loadNibNamed("DPSpringSwitchView", owner: self, options: nil)
         self.addSubview(self.switchBGView)
         self.switchBGView.frame = self.bounds
         self.switchBGView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.initGestures()
+        
     }
     
     /*

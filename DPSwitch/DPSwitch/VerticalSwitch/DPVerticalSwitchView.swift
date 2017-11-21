@@ -142,9 +142,12 @@ extension DPVerticalSwitchView {
     
     fileprivate func endPanning(translation: CGPoint, velocity: CGPoint) {
         if let animator = self.animator {
-            guard animator.fractionComplete != 1.0 else {
+            guard animator.fractionComplete < 1.0 else {
                 self.enableGestures()
                 return
+            }
+            if animator.fractionComplete == 0.0 {
+                animator.fractionComplete = 0.0001
             }
             self.disableGestures()
             let viewHeight = self.tapGestureView.frame.size.height

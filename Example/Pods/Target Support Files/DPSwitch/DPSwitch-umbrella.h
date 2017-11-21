@@ -10,8 +10,8 @@
 #endif
 #endif
 
-#import "SwitchFramework.h"
+#import "DPSwitch.h"
 
-FOUNDATION_EXPORT double SwitchFrameworkVersionNumber;
-FOUNDATION_EXPORT const unsigned char SwitchFrameworkVersionString[];
+FOUNDATION_EXPORT double DPSwitchVersionNumber;
+FOUNDATION_EXPORT const unsigned char DPSwitchVersionString[];
 

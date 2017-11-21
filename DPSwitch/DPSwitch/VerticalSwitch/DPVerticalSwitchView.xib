@@ -10,11 +10,17 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Thin</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DPVerticalSwitchView" customModule="DPSwitch" customModuleProvider="target">
             <connections>
                 <outlet property="switchBGView" destination="iN0-l3-epB" id="QcP-dQ-Fxh"/>
                 <outlet property="switchView" destination="sQj-Ik-Jzk" id="SfH-o8-uvd"/>
+                <outlet property="tapGestureView" destination="zeO-Qm-08G" id="9G8-Yp-w5Z"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,16 +28,50 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MR0-Ej-WWP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPJ-zE-2GG">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="80"/>
+                            <color key="textColor" red="0.1843137255" green="0.59999999999999998" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OFF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ix2-kf-k9O">
+                            <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="80"/>
+                            <color key="textColor" red="0.1843137255" green="0.59999999999999998" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zeO-Qm-08G">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQj-Ik-Jzk">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
-                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.18431372549019609" green="0.59999999999999998" blue="0.87058823529411766" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="9"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="sQj-Ik-Jzk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="02Y-h7-Lgm"/>
+                <constraint firstAttribute="bottom" secondItem="zeO-Qm-08G" secondAttribute="bottom" id="2Eb-Oa-IWk"/>
                 <constraint firstItem="sQj-Ik-Jzk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2w2-xf-RHl"/>
+                <constraint firstAttribute="trailing" secondItem="zeO-Qm-08G" secondAttribute="trailing" id="5aB-Th-IjE"/>
+                <constraint firstItem="zeO-Qm-08G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D9d-X0-GKj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MR0-Ej-WWP" secondAttribute="trailing" id="H9L-MQ-eMW"/>
+                <constraint firstItem="MR0-Ej-WWP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TfL-WR-ppp"/>
+                <constraint firstItem="MR0-Ej-WWP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ujb-kG-F8R"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sQj-Ik-Jzk" secondAttribute="trailing" id="UtQ-P1-fhN"/>
+                <constraint firstItem="zeO-Qm-08G" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aDd-1Q-HRk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MR0-Ej-WWP" secondAttribute="bottom" id="dOf-kJ-Sx6"/>
                 <constraint firstItem="sQj-Ik-Jzk" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="uLU-D8-m9F"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

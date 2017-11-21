@@ -1,6 +1,0 @@
-framework module SwitchFramework {
-  umbrella header "SwitchFramework-umbrella.h"
-
-  export *
-  module * { export * }
-}

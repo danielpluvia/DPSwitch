@@ -1,16 +1,16 @@
 PODS:
-  - SwitchFramework (1.0.0)
+  - DPSwitch (1.0.1)
 
 DEPENDENCIES:
-  - SwitchFramework (from `../SwitchFramework/`)
+  - DPSwitch (from `../DPSwitch/`)
 
 EXTERNAL SOURCES:
-  SwitchFramework:
-    :path: ../SwitchFramework/
+  DPSwitch:
+    :path: ../DPSwitch/
 
 SPEC CHECKSUMS:
-  SwitchFramework: c1c50afbb85a0a262f781eba365d3c30e4d45d3b
+  DPSwitch: be6d0dc515f1805594567b8317710395c0bc4427
 
-PODFILE CHECKSUM: 1e8e60141c6fda264b86c3bc9c2d8bd00257376a
+PODFILE CHECKSUM: f37afd07a479dc6bf81e681c66ec7b2aa33b0caf
 
 COCOAPODS: 1.3.1

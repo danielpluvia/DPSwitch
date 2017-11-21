@@ -1,0 +1,6 @@
+framework module DPSwitch {
+  umbrella header "DPSwitch-umbrella.h"
+
+  export *
+  module * { export * }
+}

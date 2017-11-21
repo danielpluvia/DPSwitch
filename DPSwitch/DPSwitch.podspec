@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DPSwitch"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "A framework which implements some custom switches in iOS."
   s.description  = "This framework provides an option for people to create a custom switch."
   s.homepage     = "https://github.com/danielpluvia/DPSwitch"

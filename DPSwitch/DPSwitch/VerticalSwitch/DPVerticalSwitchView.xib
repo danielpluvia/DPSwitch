@@ -52,7 +52,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQj-Ik-Jzk">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
-                    <color key="backgroundColor" red="0.18431372549019609" green="0.59999999999999998" blue="0.87058823529411766" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.1843137255" green="0.59999999999999998" blue="0.87058823529999996" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="9"/>

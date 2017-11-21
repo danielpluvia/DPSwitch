@@ -27,18 +27,12 @@ public class DPVerticalSwitchView: UIView {
     @IBOutlet public weak var bottomLabel: UILabel!
     
     fileprivate var animator: UIViewPropertyAnimator?
-    fileprivate var currentState: AnimationState = .top {
-        didSet {
-            guard self.currentState != oldValue else {
-                return
-            }
-            self.statePS.onNext(currentState)
-        }
-    }
+    public fileprivate(set) var currentState: AnimationState = .top
     fileprivate var panGestureRecognizer: UIPanGestureRecognizer!
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
     
-    fileprivate var dampingRatio: CGFloat = 0.4                         // 0 -> More bouncing animation
+    fileprivate let dampingRatio: CGFloat = 0.5                         // 0 -> More bouncing animation
+    fileprivate let animationDuration: TimeInterval = 0.8
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,6 +59,50 @@ public class DPVerticalSwitchView: UIView {
     
 }
 
+extension DPVerticalSwitchView {
+    
+    /// Change the state of the switch
+    ///
+    /// - Parameters:
+    ///   - state: AnimationState
+    ///   - withNotification: Should it use publish subject to emit event or not? False by default.
+    public func moveSwitch(to state: AnimationState, withNotification: Bool = false) {
+        guard state != self.currentState else {
+            return
+        }
+        var destY = self.tapGestureView.center.y + self.switchView.frame.height/2.0
+        switch state {
+        case .top:
+            destY = self.tapGestureView.center.y - self.switchView.frame.height/2.0
+        case .bottom:
+            destY = self.tapGestureView.center.y + self.switchView.frame.height/2.0
+        }
+        self.disableGestures()
+        self.animator = UIViewPropertyAnimator(duration: self.animationDuration, dampingRatio: self.dampingRatio, animations: {
+            self.switchView.center.y = destY
+        })
+        self.animator?.fractionComplete = 0.0001
+        self.animator?.addCompletion({ (position: UIViewAnimatingPosition) in
+            self.change(state: state, withNotification: withNotification)
+        })
+        let vector = CGVector(dx: 0, dy: 100.0 * 100)
+        let springParameters = UISpringTimingParameters(dampingRatio:  self.dampingRatio, initialVelocity: vector)
+        self.animator?.continueAnimation(withTimingParameters: springParameters, durationFactor: CGFloat(self.animationDuration / 2))
+    }
+    
+    fileprivate func change(state destDtate: AnimationState, withNotification: Bool = true) {
+        var stateChanged = false
+        if self.currentState != destDtate {
+            stateChanged = true
+        }
+        self.currentState = destDtate
+        self.enableGestures()
+        if withNotification && stateChanged {
+            self.statePS.onNext(destDtate)
+        }
+    }
+
+}
 
 // MARK: - Gestures management
 extension DPVerticalSwitchView {
@@ -115,7 +153,7 @@ extension DPVerticalSwitchView {
         case .bottom:
             destY = self.tapGestureView.center.y - self.switchView.frame.height/2.0
         }
-        self.animator = UIViewPropertyAnimator(duration: 1, dampingRatio: self.dampingRatio, animations: {
+        self.animator = UIViewPropertyAnimator(duration: self.animationDuration, dampingRatio: self.dampingRatio, animations: {
             self.switchView.center.y = destY
         })
     }
@@ -131,16 +169,22 @@ extension DPVerticalSwitchView {
                 progress = 1 - (yTranslation / self.tapGestureView.center.y)
             }
             progress = max(0.0001, min(0.9999, progress))
-            if progress > 0.7 {
+            if progress > 0.5 {
                 let velocity = recognizer.velocity(in: self.tapGestureView)
-                self.endPanning(translation: translation, velocity: velocity)
+                self.endPanning(translation: translation, velocity: velocity, needSameDirection: true)
             } else {
                 animator.fractionComplete = progress
             }
         }
     }
     
-    fileprivate func endPanning(translation: CGPoint, velocity: CGPoint) {
+    /// Actions should be done after ending panning.
+    ///
+    /// - Parameters:
+    ///   - translation: CGPoint
+    ///   - velocity: CGPoint
+    ///   - needSameDirection: Should keep the same direction or not. true for keeping same direction, false for not matter.
+    fileprivate func endPanning(translation: CGPoint, velocity: CGPoint, needSameDirection: Bool = false) {
         if let animator = self.animator {
             guard animator.fractionComplete < 1.0 else {
                 self.enableGestures()
@@ -151,42 +195,43 @@ extension DPVerticalSwitchView {
             }
             self.disableGestures()
             let viewHeight = self.tapGestureView.frame.size.height
+            var destState: AnimationState = self.currentState
             switch self.currentState {
             case .top:
-                if translation.y >= viewHeight / 3 || velocity.y >= 100 {
+                if needSameDirection {
                     animator.isReversed = false
-                    animator.addCompletion({ (position: UIViewAnimatingPosition) in
-                        self.currentState = .bottom
-                        self.enableGestures()
-                    })
+                    destState = .bottom
                 } else {
-                    animator.isReversed = true
-                    animator.addCompletion({ (position: UIViewAnimatingPosition) in
-                        self.currentState = .top
-                        self.enableGestures()
-                    })
+                    if translation.y >= viewHeight / 3 || velocity.y >= 100 {
+                        animator.isReversed = false
+                        destState = .bottom
+                    } else {
+                        animator.isReversed = true
+                        destState = .top
+                    }
                 }
             case .bottom:
-                if translation.y <= (-viewHeight) / 3 || velocity.y <= -100 {
+                if needSameDirection {
                     animator.isReversed = false
-                    animator.addCompletion({ (position: UIViewAnimatingPosition) in
-                        self.currentState = .top
-                        self.enableGestures()
-                    })
+                    destState = .top
                 } else {
-                    animator.isReversed = true
-                    animator.addCompletion({ (position: UIViewAnimatingPosition) in
-                        self.currentState = .bottom
-                        self.enableGestures()
-                    })
+                    if translation.y <= (-viewHeight) / 3 || velocity.y <= -100 {
+                        animator.isReversed = false
+                        destState = .top
+                    } else {
+                        animator.isReversed = true
+                        destState = .bottom
+                    }
                 }
             }
-            let vector = CGVector(dx: 0, dy: velocity.y * 100)
+            animator.addCompletion({ (position: UIViewAnimatingPosition) in
+                self.change(state: destState)
+            })
+            let vector = CGVector(dx: 0, dy: velocity.y * 10000)
             let springParameters = UISpringTimingParameters(dampingRatio:  self.dampingRatio, initialVelocity: vector)
-            animator.continueAnimation(withTimingParameters: springParameters, durationFactor: 0.5)
+            animator.continueAnimation(withTimingParameters: springParameters, durationFactor: CGFloat(self.animationDuration / 2))
         }
     }
-    
 }
 
 // MARK: - TapGesture
@@ -199,28 +244,12 @@ extension DPVerticalSwitchView {
     }
     
     @objc func handleTapGesture(recognizer: UITapGestureRecognizer) {
-        self.disableGestures()
-        var destState: AnimationState = self.currentState
         let position = recognizer.location(in: self.tapGestureView)
-        var destY = self.tapGestureView.center.y + self.switchView.frame.height/2.0
         if position.y > self.tapGestureView.frame.size.height / 2 {
-            destY = self.tapGestureView.center.y + self.switchView.frame.height/2.0
-            destState = .bottom
+            self.moveSwitch(to: .bottom, withNotification: true)
         } else {
-            destY = self.tapGestureView.center.y - self.switchView.frame.height/2.0
-            destState = .top
+            self.moveSwitch(to: .top, withNotification: true)
         }
-        self.animator = UIViewPropertyAnimator(duration: 1, dampingRatio: self.dampingRatio, animations: {
-            self.switchView.center.y = destY
-        })
-        self.animator?.fractionComplete = 0.0001
-        self.animator?.addCompletion({ (position: UIViewAnimatingPosition) in
-            self.currentState = destState
-            self.enableGestures()
-        })
-        let vector = CGVector(dx: 0, dy: 100.0 * 100)
-        let springParameters = UISpringTimingParameters(dampingRatio:  self.dampingRatio, initialVelocity: vector)
-        self.animator?.continueAnimation(withTimingParameters: springParameters, durationFactor: 0.5)
     }
     
 }

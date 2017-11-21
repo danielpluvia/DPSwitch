@@ -29,10 +29,22 @@ class ViewController: UIViewController {
             })
             .disposed(by: self.disposeBag)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.switchView.moveSwitch(to: .bottom)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func didTapBtn(_ sender: UIButton) {
+        switch self.switchView.currentState {
+        case .top:
+            self.switchView.moveSwitch(to: .bottom)
+        case .bottom:
+            self.switchView.moveSwitch(to: .top)
+        }
+    }
 }
 

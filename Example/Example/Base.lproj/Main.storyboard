@@ -21,18 +21,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdk-Rh-bnV" customClass="DPVerticalSwitchView" customModule="DPSwitch">
-                                <rect key="frame" x="93.5" y="239.5" width="187.5" height="187.5"/>
+                                <rect key="frame" x="75" y="221" width="225" height="225"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zdk-Rh-bnV" secondAttribute="height" multiplier="1:1" id="LGW-tq-7cU"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2k-IJ-LUf">
+                                <rect key="frame" x="8" y="617" width="359" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="m1A-2n-j42"/>
+                                </constraints>
+                                <state key="normal" title="Change switch state">
+                                    <color key="titleColor" red="0.1843137255" green="0.59999999999999998" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yqt-1k-X5G"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zdk-Rh-bnV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0Ks-PD-WLz"/>
-                            <constraint firstItem="zdk-Rh-bnV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="3tG-np-PA4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="h2k-IJ-LUf" secondAttribute="trailing" constant="8" id="0hw-nU-ECU"/>
+                            <constraint firstItem="zdk-Rh-bnV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.6" id="3tG-np-PA4"/>
                             <constraint firstItem="zdk-Rh-bnV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5M2-gI-Wxg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="h2k-IJ-LUf" secondAttribute="bottom" constant="20" id="M5Y-2s-qI2"/>
+                            <constraint firstItem="h2k-IJ-LUf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="YOv-Dq-TD0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

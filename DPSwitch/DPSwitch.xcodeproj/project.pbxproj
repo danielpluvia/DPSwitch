@@ -10,14 +10,18 @@
 		6567D0441FC38E5500EC4FB6 /* DPSwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 6567D0421FC38E5500EC4FB6 /* DPSwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6567D0521FC3904300EC4FB6 /* DPVerticalSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6567D0511FC3904300EC4FB6 /* DPVerticalSwitchView.swift */; };
 		6567D0541FC3908200EC4FB6 /* DPVerticalSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6567D0531FC3908200EC4FB6 /* DPVerticalSwitchView.xib */; };
+		824AAEF52F8C16051DADD15B /* Pods_DPSwitch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A6B659BDC3DFFA35F544A1 /* Pods_DPSwitch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		064BAE66A7C3AC31F45C938E /* Pods-DPSwitch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DPSwitch.release.xcconfig"; path = "Pods/Target Support Files/Pods-DPSwitch/Pods-DPSwitch.release.xcconfig"; sourceTree = "<group>"; };
+		27A6B659BDC3DFFA35F544A1 /* Pods_DPSwitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DPSwitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6567D03F1FC38E5500EC4FB6 /* DPSwitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DPSwitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6567D0421FC38E5500EC4FB6 /* DPSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPSwitch.h; sourceTree = "<group>"; };
 		6567D0431FC38E5500EC4FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6567D0511FC3904300EC4FB6 /* DPVerticalSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPVerticalSwitchView.swift; sourceTree = "<group>"; };
 		6567D0531FC3908200EC4FB6 /* DPVerticalSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DPVerticalSwitchView.xib; sourceTree = "<group>"; };
+		7FB0E6D7EE7AD0AA0BF3D0C6 /* Pods-DPSwitch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DPSwitch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DPSwitch/Pods-DPSwitch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				824AAEF52F8C16051DADD15B /* Pods_DPSwitch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +41,8 @@
 			children = (
 				6567D0411FC38E5500EC4FB6 /* DPSwitch */,
 				6567D0401FC38E5500EC4FB6 /* Products */,
+				AE84549DC94959082E961854 /* Pods */,
+				CCE812CB30D9FDDD87D18191 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +73,23 @@
 			path = VerticalSwitch;
 			sourceTree = "<group>";
 		};
+		AE84549DC94959082E961854 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7FB0E6D7EE7AD0AA0BF3D0C6 /* Pods-DPSwitch.debug.xcconfig */,
+				064BAE66A7C3AC31F45C938E /* Pods-DPSwitch.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CCE812CB30D9FDDD87D18191 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27A6B659BDC3DFFA35F544A1 /* Pods_DPSwitch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -84,10 +108,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6567D0471FC38E5500EC4FB6 /* Build configuration list for PBXNativeTarget "DPSwitch" */;
 			buildPhases = (
+				D210FB18C342E019CBD6427F /* [CP] Check Pods Manifest.lock */,
 				6567D03A1FC38E5500EC4FB6 /* Sources */,
 				6567D03B1FC38E5500EC4FB6 /* Frameworks */,
 				6567D03C1FC38E5500EC4FB6 /* Headers */,
 				6567D03D1FC38E5500EC4FB6 /* Resources */,
+				8F97F2BE31A9FEF08FC7BCA0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -141,6 +167,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8F97F2BE31A9FEF08FC7BCA0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DPSwitch/Pods-DPSwitch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D210FB18C342E019CBD6427F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DPSwitch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6567D03A1FC38E5500EC4FB6 /* Sources */ = {
@@ -269,6 +331,7 @@
 		};
 		6567D0481FC38E5500EC4FB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FB0E6D7EE7AD0AA0BF3D0C6 /* Pods-DPSwitch.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -292,6 +355,7 @@
 		};
 		6567D0491FC38E5500EC4FB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 064BAE66A7C3AC31F45C938E /* Pods-DPSwitch.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

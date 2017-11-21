@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,9 +17,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DPVerticalSwitchView" customModule="DPSwitch" customModuleProvider="target">
             <connections>
+                <outlet property="bottomLabel" destination="ix2-kf-k9O" id="r4z-zg-xuA"/>
                 <outlet property="switchBGView" destination="iN0-l3-epB" id="QcP-dQ-Fxh"/>
                 <outlet property="switchView" destination="sQj-Ik-Jzk" id="SfH-o8-uvd"/>
                 <outlet property="tapGestureView" destination="zeO-Qm-08G" id="9G8-Yp-w5Z"/>
+                <outlet property="topLabel" destination="NPJ-zE-2GG" id="hLU-5z-WFe"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '16400EA22E4FAE33F199070A05CFE87B'
+               BlueprintIdentifier = '26D3A289EA1EB54938EC6C94CC794D5C'
                BlueprintName = 'DPSwitch'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'DPSwitch.framework'>

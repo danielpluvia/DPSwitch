@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import RxSwift
 
 extension DPVerticalSwitchView {
-    enum AnimationState {
+    public enum AnimationState {
         case top
         case bottom
     }
@@ -17,12 +18,23 @@ extension DPVerticalSwitchView {
 
 public class DPVerticalSwitchView: UIView {
     
-    @IBOutlet public weak var switchBGView: UIView!
+    public var statePS: PublishSubject = PublishSubject<AnimationState>()   // It will publish the current if there is a change of it
+    
     @IBOutlet weak var tapGestureView: UIView!
+    @IBOutlet public weak var switchBGView: UIView!
     @IBOutlet public weak var switchView: UIView!
+    @IBOutlet public weak var topLabel: UILabel!
+    @IBOutlet public weak var bottomLabel: UILabel!
     
     fileprivate var animator: UIViewPropertyAnimator?
-    fileprivate var currentState: AnimationState = .top
+    fileprivate var currentState: AnimationState = .top {
+        didSet {
+            guard self.currentState != oldValue else {
+                return
+            }
+            self.statePS.onNext(currentState)
+        }
+    }
     fileprivate var panGestureRecognizer: UIPanGestureRecognizer!
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
     
@@ -36,6 +48,10 @@ public class DPVerticalSwitchView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.instanceFromNib()
+    }
+    
+    deinit {
+        self.statePS.onCompleted()
     }
     
     fileprivate func instanceFromNib() {

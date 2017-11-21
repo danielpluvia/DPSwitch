@@ -1,5 +1,7 @@
 PODS:
-  - DPSwitch (1.0.1)
+  - DPSwitch (1.0.1):
+    - RxSwift
+  - RxSwift (4.0.0)
 
 DEPENDENCIES:
   - DPSwitch (from `../DPSwitch/`)
@@ -9,7 +11,8 @@ EXTERNAL SOURCES:
     :path: ../DPSwitch/
 
 SPEC CHECKSUMS:
-  DPSwitch: be6d0dc515f1805594567b8317710395c0bc4427
+  DPSwitch: 59d44b92ec8c81b19c0918886dcb0acc33e5b16e
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
 
 PODFILE CHECKSUM: f37afd07a479dc6bf81e681c66ec7b2aa33b0caf
 
